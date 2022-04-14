@@ -1,0 +1,61 @@
+﻿<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="utf-8" />
+    <title></title>    
+</head>
+<body>
+    <span id="one">
+        <strong>Lab 11 Question 1 Solution</strong><br><br>
+        const dns = require('dns');<br>
+        dns.resolve4('www.miu.edu', function(error, address) <br>
+        {<br>
+        &emsp;    if (error) throw error;<br>
+        &emsp;    console.log(address);<br>
+        });
+    </span><br><br><br>
+                   <span>
+                       <strong>
+                           Lab 11 Question 2 Solution 1
+                       </strong>
+                       <br><br>
+                       const http = require('http');<br>
+                       const fs = require('fs');<br>
+                       const server = http.createServer();<br>
+                       server.on('request', function (req, res) <br>
+                       {<br>
+                       &emsp;         res.writeHead(200, { 'Content-Type': 'image/jpeg' });<br>
+                       &emsp;         res.end(fs.readFileSync('./tiles.jpg'), 'binary');<br>
+                       });<br>
+                       server.listen(8080);<br><br><br>
+
+                       <strong>
+                           Lab 11 Question 2 Solution 2
+                       </strong><br><br>
+                       const fs = require('fs');<br>
+                       const server = require('http').createServer();<br>
+                       server.on('request', (request, response) =><br>
+                       {<br>
+                       &emsp;   fs.readFile('./tiles.jpg', (err, data) =><br>
+                       &emsp;{<br>
+                       &emsp; &emsp;if (err) throw err;<br>
+                       &emsp; &emsp;response.end(data);<br>
+                       &emsp;});<br>
+                       });<br>
+                       server.listen(8000);<br><br><br>
+
+                       <strong>
+                           Lab 11 Question 2 Solution 3
+                       </strong><br><br>
+                       const fs = require('fs');<br>
+                       const server = require('http').createServer();<br>
+                       server.on('request', (req, res) => { fs.createReadStream("./tiles.jpg").pipe(res); });<br>
+                       server.listen(9000);<br><br><br>
+
+                       <strong>
+                           Lab 11 Question 2 Solution 4
+                       </strong><br><br>
+                       require('http').createServer((req, res) => { require('fs').createReadStream('./tiles.jpg').pipe(res); }).listen(9090, () => console.log("listening to 9090"));
+                   </span>
+</body>
+</html>
